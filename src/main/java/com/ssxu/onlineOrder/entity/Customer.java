@@ -1,4 +1,4 @@
-package com.ssxu.OnlineOrder.entity;
+package com.ssxu.onlineOrder.entity;
 
 /**
  * @author Shaoshuai Xu
@@ -51,5 +51,16 @@ public class Customer {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                '}';
     }
 }

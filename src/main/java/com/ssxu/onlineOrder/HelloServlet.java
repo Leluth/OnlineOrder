@@ -1,7 +1,7 @@
-package com.ssxu.OnlineOrder;
+package com.ssxu.onlineOrder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ssxu.OnlineOrder.entity.Customer;
+import com.ssxu.onlineOrder.entity.Customer;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
