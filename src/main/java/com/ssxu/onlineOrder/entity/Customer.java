@@ -1,16 +1,31 @@
 package com.ssxu.onlineOrder.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
 /**
  * @author Shaoshuai Xu
  * @version 1.0
  * @description: Customer
  * @date 2021/9/25 15:56
  */
-public class Customer {
+@Entity
+@Table(name = "customers")
+public class Customer implements Serializable {
+
+    private static final long serialVersionUID = 2652327633296064143L;
+
+    @Id
     private String email;
+
     private String firstName;
+
     private String lastName;
+
     private String password;
+
     private boolean enabled;
 
     public String getEmail() {
@@ -64,3 +79,4 @@ public class Customer {
                 '}';
     }
 }
+

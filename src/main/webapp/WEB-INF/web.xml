@@ -5,6 +5,21 @@
 <web-app>
 
     <display-name>OnlineOder WebSite</display-name>
+
+    <!-- to connect the dispatcher servlet and applicationContext -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/onlineOrder-servlet.xml
+        </param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>onlineOrder</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
