@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller
 public class SignUpController {
+
     @Autowired
     private CustomerService customerService;
 
@@ -28,4 +29,5 @@ public class SignUpController {
         customerService.signUp(customer);
     }
 }
+
 
