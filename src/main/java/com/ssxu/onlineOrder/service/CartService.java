@@ -47,6 +47,8 @@ public class CartService {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         String username = loggedInUser.getName();
         Customer customer = customerService.getCustomer(username);
-        cartDao.removeAllCartItems(customer.getCart());
+        if (customer != null) {
+            cartDao.removeAllCartItems(customer.getCart());
+        }
     }
 }
