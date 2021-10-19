@@ -27,7 +27,7 @@ public class CartDao {
             session = sessionFactory.openSession();
             OrderItem cartItem = session.get(OrderItem.class, cartItemId);
             Cart cart = cartItem.getCart();
-            // below line is necessary, because you have to move the cartID in the OrderItem
+            // below line is necessary, otherwise removed cartItem will be added back
             cart.getOrderItemList().remove(cartItem);
 
             session.beginTransaction();
