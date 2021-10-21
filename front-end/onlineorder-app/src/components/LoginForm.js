@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {Button, Form, Input, message} from "antd";
-import {LockOutlined, UserOutlined} from "@ant-design/icons";
+import {Button, Form, Input, message, Space} from "antd";
+import {LockOutlined, ShoppingCartOutlined, UserOutlined} from "@ant-design/icons";
 import {login} from "../utils";
 
 class LoginForm extends Component {
     state = {
         loading: false,
     };
+
+    formRef = React.createRef();
 
     onFinish = (data) => {
         this.setState({
@@ -27,33 +29,47 @@ class LoginForm extends Component {
             });
     };
 
+    onReset = () => {
+        this.formRef.current.resetFields();
+    };
+
     render() {
         return (
             <Form
                 name="normal_login"
+                ref={this.formRef}
                 onFinish={this.onFinish}
                 style={{
-                    width: 300,
+                    width: 400,
                     margin: "auto",
                 }}
             >
+                <div style={{textAlign: 'center', fontSize: '80px', marginTop: "20%"}}>
+                    <ShoppingCartOutlined/>
+                </div>
                 <Form.Item
                     name="username"
                     rules={[{required: true, message: "Please input your Username!"}]}
                 >
-                    <Input prefix={<UserOutlined/>} placeholder="Username"/>
+                    <Input size="large" prefix={<UserOutlined/>} placeholder="Username"/>
                 </Form.Item>
                 <Form.Item
                     name="password"
                     rules={[{required: true, message: "Please input your Password!"}]}
                 >
-                    <Input.Password prefix={<LockOutlined/>} placeholder="Password"/>
+                    <Input.Password size="large" prefix={<LockOutlined/>} placeholder="Password"/>
                 </Form.Item>
 
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" loading={this.state.loading}>
-                        Login
-                    </Button>
+                <Form.Item style={{textAlign: 'center'}}>
+                    <Space size="large">
+                        <Button size="large" type="primary" htmlType="submit" shape="round"
+                                loading={this.state.loading}>
+                            Login
+                        </Button>
+                        <Button size="large" htmlType="button" shape="round" onClick={this.onReset}>
+                            Reset
+                        </Button>
+                    </Space>
                 </Form.Item>
             </Form>
         );
