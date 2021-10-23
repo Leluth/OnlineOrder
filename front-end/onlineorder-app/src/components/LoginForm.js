@@ -33,6 +33,10 @@ class LoginForm extends Component {
         this.formRef.current.resetFields();
     };
 
+    componentWillUnmount() {
+        this.setState = () => false;
+    }
+
     render() {
         return (
             <Form
@@ -44,7 +48,7 @@ class LoginForm extends Component {
                     margin: "auto",
                 }}
             >
-                <div style={{textAlign: 'center', fontSize: '80px', marginTop: "20%"}}>
+                <div style={{textAlign: 'center', color: 'white', fontSize: '80px', marginTop: "20%"}}>
                     <ShoppingCartOutlined/>
                 </div>
                 <Form.Item
