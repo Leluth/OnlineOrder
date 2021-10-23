@@ -11,6 +11,6 @@
       http://www.springframework.org/schema/mvc
       https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <mvc:resources mapping="/**" location="/static/" />
+    <mvc:resources mapping="/**" location="/" />
     <context:component-scan base-package="com.ssxu.onlineOrder"/>
 </beans>

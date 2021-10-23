@@ -48,7 +48,6 @@ class SignupForm extends React.Component {
                 >
                     <Form
                         name="normal_register"
-                        initialValues={{remember: true}}
                         onFinish={this.onFinish}
                         preserve={false}
                     >
