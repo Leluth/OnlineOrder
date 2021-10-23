@@ -9,6 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 /**
  * @author Shaoshuai Xu
  * @version 1.0
@@ -33,11 +35,12 @@ public class CartService {
 
         if (customer != null) {
             Cart cart = customer.getCart();
-            double totalPrice = 0;
+            BigDecimal totalPrice = new BigDecimal("0");
             for (OrderItem item : cart.getOrderItemList()) {
-                totalPrice += item.getPrice() * item.getQuantity();
+                double currentPrice = item.getPrice() * item.getQuantity();
+                totalPrice = totalPrice.add(new BigDecimal(Double.toString(currentPrice)));
             }
-            cart.setTotalPrice(totalPrice);
+            cart.setTotalPrice(totalPrice.doubleValue());
             return cart;
         }
         return new Cart();
