@@ -1,5 +1,6 @@
 package com.ssxu.onlineOrder.controller;
 
+import com.ssxu.onlineOrder.service.CartService;
 import com.ssxu.onlineOrder.service.ItemOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,18 @@ public class ItemOrderController {
     @Autowired
     private ItemOrderService itemOrderService;
 
-    @RequestMapping(value = "/order/{menuId}", method = RequestMethod.POST)
+    @Autowired
+    private CartService cartService;
+
+    @RequestMapping(value = "/order/add/{menuId}", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     public void addMenuItemToCart(@PathVariable int menuId) {
         itemOrderService.saveItem(menuId);
+    }
+
+    @RequestMapping(value = "/order/delete/{cartItemId}", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.OK)
+    public void deleteItemFromCart(@PathVariable int cartItemId) {
+        cartService.deleteItemFromCart(cartItemId);
     }
 }

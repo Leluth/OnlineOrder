@@ -1,7 +1,7 @@
-import {Avatar, Button, Drawer, List, message, Modal, Space, Typography} from "antd";
-import {LogoutOutlined, ShoppingCartOutlined} from "@ant-design/icons";
+import {Avatar, Button, Drawer, List, message, Modal, Space, Tooltip, Typography} from "antd";
+import {DeleteOutlined, LogoutOutlined, ShoppingCartOutlined} from "@ant-design/icons";
 import {useEffect, useState} from "react";
-import {checkout, getCart} from "../utils";
+import {checkout, deleteItemFromCart, getCart} from "../utils";
 
 const {Text} = Typography;
 
@@ -12,6 +12,7 @@ const MyCart = (props) => {
     const [loading, setLoading] = useState(false);
     const [checking, setChecking] = useState(false);
 
+    // get cart
     useEffect(() => {
         // case1: cart is not visible -> return
         if (!cartVisible) {
@@ -36,6 +37,7 @@ const MyCart = (props) => {
             });
     }, [cartVisible]);
 
+    // check out
     const onCheckOut = () => {
         setChecking(true);
         checkout()
@@ -48,6 +50,27 @@ const MyCart = (props) => {
             })
             .finally(() => {
                 setChecking(false);
+            });
+    };
+
+    // delete item from cart
+    const DeleteFromCart = (itemId) => {
+        console.log(itemId)
+        setLoading(true);
+        deleteItemFromCart(itemId)
+            .then(() => {
+                getCart()
+                    .then((data) => {
+                        setCartData(data);
+                        message.success(`Successfully delete item`);
+                    })
+                    .catch((err) => {
+                        message.error(err.message);
+                    })
+            })
+            .catch((err) => message.error(err.message))
+            .finally(() => {
+                setLoading(false);
             });
     };
 
@@ -120,7 +143,14 @@ const MyCart = (props) => {
                     itemLayout="horizontal"
                     dataSource={cartData?.orderItemList}
                     renderItem={(item) => (
-                        <List.Item>
+                        <List.Item actions={[
+                            <Tooltip title="Delete from shopping cart">
+                                <Button
+                                    icon={<DeleteOutlined/>}
+                                    onClick={() => DeleteFromCart(item.id)}
+                                />
+                            </Tooltip>
+                        ]}>
                             <List.Item.Meta
                                 avatar={
                                     <Avatar src={item.menuItem.imageUrl}/>

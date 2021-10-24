@@ -54,4 +54,8 @@ public class CartService {
             cartDao.removeAllCartItems(customer.getCart());
         }
     }
+
+    public void deleteItemFromCart(int cartItemId) {
+        cartDao.removeCartItem(cartItemId);
+    }
 }

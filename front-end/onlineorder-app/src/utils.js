@@ -48,7 +48,7 @@ export const getRestaurants = () => {
 
 // add item to cart api
 export const addItemToCart = (itemId) => {
-    return fetch(`/order/${itemId}`, {
+    return fetch(`/order/add/${itemId}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -57,6 +57,21 @@ export const addItemToCart = (itemId) => {
     }).then((response) => {
         if (response.status < 200 || response.status >= 300) {
             throw Error("Fail to add menu item to shopping cart");
+        }
+    });
+};
+
+// delete item from cart api
+export const deleteItemFromCart = (itemId) => {
+    return fetch(`/order/delete/${itemId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: "include",
+    }).then((response) => {
+        if (response.status < 200 || response.status >= 300) {
+            throw Error("Fail to delete menu item from shopping cart");
         }
     });
 };
