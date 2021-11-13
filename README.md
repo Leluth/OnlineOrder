@@ -7,6 +7,6 @@ Deployed to AWS: [OnlineOrder](http://204.236.167.47/)
 
 ![Login page](/images/login.png)
 
-![Homw page](/images/home.png)
+![Home page](/images/home.png)
 
 ![Checkout page](/images/checkout.png)
